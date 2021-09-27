@@ -17,8 +17,6 @@ const payBtn = document.querySelector("#pay-button");
 async function init() {
   //INITIALIZE DIBSY WITH DIBSY PUBLIC KEY
   const dibsy = await Dibsy(pk, {
-    type: "embed",
-     
     canSubmit: (canSubmit) => {
       if (!canSubmit) {
         payBtn.setAttribute("disabled", "true");
@@ -26,9 +24,8 @@ async function init() {
         payBtn.removeAttribute("disabled");
       }
     },
-    
     onFieldReady: (field, fields) => {
-      if (fields?.length === 4) {
+      if (fields?.length === 3) {
         removeLoader();
       }
     },
@@ -39,10 +36,6 @@ async function init() {
   cardNumber.mount("#card-number");
   cardNumber.errorMessage("#card-number-error");
 
-  const cardHolder = dibsy.createComponent("cardHolder");
-  cardHolder.mount("#card-holder");
-  cardHolder.errorMessage("#card-holder-error");
-
   const cardCode = dibsy.createComponent("cardCode");
   cardCode.mount("#card-code");
   cardCode.errorMessage("#card-code-error");
@@ -52,7 +45,7 @@ async function init() {
   expiryDate.errorMessage("#expiry-date-error");
 
 
-  fetch(`/init-payment`, {
+  fetch(`/init-credit-card`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -101,5 +94,22 @@ async function init() {
       });
     });
 }
-
 init()
+
+
+const radios = document.querySelectorAll('input[name="choice"]');
+
+
+for(var i = 0, max = radios.length; i < max; i++) {
+    radios[i].onclick = function() {
+
+      if (this.value === "naps-card") {
+          document.querySelector("#mcForm").style.display = "none";
+          document.querySelector("#naps").style.display = ""
+        }
+      else if ( this.value === "credit-card" ) {
+        document.querySelector("#mcForm").style.display = "block";
+        document.querySelector("#naps").style.display = "none"
+      }
+    }
+}

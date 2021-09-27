@@ -14,71 +14,98 @@
 	</head>
 
 	<body>
+
 		<div id="wrapper">
+
+			<div class="radio-checker">
+			<label>
+				<input type="radio" name="choice" value="credit-card"> 
+				Credit Card
+			</label>
+			</div>
+			
 			<div id="checkout-loader-wrapper">
-				<div class="checkout-loader"></div>
-			</div>
-			<div id="error" class="error-message">
-				<img class="icon" src="assets/images/error.svg" />
-				<span id="error-content" class="content"></span>
-			</div>
-			<form method="post" class="form" id="mcForm">
-				<div class="form-fields">
-					<div class="row">
-						<div class="form-group form-group--card-holder">
-							<label class="label" for="card-holder">Name</label>
-							<div id="card-holder" class="card-element"></div>
-							<div
-								id="card-holder-error"
-								class="field-error"
-								role="alert"
-							></div>
-						</div>
-					</div>
+			<div class="checkout-loader"></div>
+		  </div>
 
-					<div class="row">
-						<div class="form-group form-group--card-number">
-							<label class="label" for="card-number">Card number</label>
-							<div id="card-number" class="card-element"></div>
-							<div
-								id="card-number-error"
-								class="field-error"
-								role="alert"
-							></div>
-						</div>
-					</div>
 
-					<div class="row">
-						<div class="form-group form-group--expiry-date">
-							<label class="label" for="expiry-date">Expiry date</label>
-							<div id="expiry-date" class="card-element"></div>
-							<div
-								id="expiry-date-error"
-								class="field-error"
-								role="alert"
-							></div>
-						</div>
+		  <div id="error" class="error-message">
+			<img class="icon" src="assets/images/error.svg" />
+			<span id="error-content" class="content"></span>
+		  </div>
 
-						<div class="form-group form-group--card-code">
-							<label class="label" for="card-code">CVC</label>
-							<div id="card-code" class="card-element"></div>
-							<div id="card-code-error" class="field-error" role="alert"></div>
-						</div>
-					</div>
+
+		  <form method="post" class="form" id="mcForm">
+
+			<div class="form-fields">
+
+ <!-- card number -->
+			  <div class="row">
+				<div class="form-group form-group--card-number">
+
+				  <label class="label" for="card-number">
+					Card number
+				  </label>
+
+				  <div id="card-number" class="card-element"></div>
+				  <div id="card-number-error" class="field-error" role="alert"></div>
+
+				</div>
+			  </div>
+
+<!-- 			   -->
+	  <!-- expiry and cvc -->
+			  <div class="row">
+				<div class="form-group form-group--expiry-date">
+
+				  <label class="label" for="expiry-date">
+					Expiry date
+				  </label>
+
+				  <div id="expiry-date" class="card-element"></div>
+				  <div id="expiry-date-error" class="field-error" role="alert"></div>
+
 				</div>
 
-				<button
-					disabled="true"
-					id="pay-button"
-					class="pay-button"
-					type="submit"
-				>
-					Pay QAR 50.00
-				</button>
+				<div class="form-group form-group--card-code">
 
-				<div id="form-error" class="field-error" role="alert"></div>
-			</form>
+				  <label class="label" for="card-code">
+					CVC
+				  </label>
+
+				  <div id="card-code" class="card-element"></div>
+				  <div id="card-code-error" class="field-error" role="alert"></div>
+
+				</div>
+			</div>
+<!--      -->
+			</div>
+	  
+			<button disabled="true" id="pay-button" class="pay-button" type="submit">
+			  Pay QAR 50.00
+			</button>
+	  
+			<div id="form-error" class="field-error" role="alert"></div>
+		  </form>
+		<!-- </div> -->
+
+
+	<div class="radio-wrapper" >
+
+		<div class="radio-checker">
+			<label>
+				<input type="radio" name="choice" value="naps-card"> 
+				Debit Card
+			</label>
 		</div>
+  
+		<button id="naps" class="pay-button" type="submit">
+		  Continue to NAPS Checkout
+		</button>
+  
+	</div>
+
+	</div>
 		<script src="./assets/js/script.js"></script>
-	</body>
+	  </body>	  
 </html>

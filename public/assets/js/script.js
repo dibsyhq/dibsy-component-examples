@@ -1,5 +1,5 @@
 // This is your Dibsy Public API Key.
-const pk = "pk_test_d70V5Wsqu263AdY4gXPIAWGMZqMRmy0BbNmi";
+const DIBSY_PUBLIC_API = process.env.DIBSY_PUBLIC_API;
 
 const removeLoader = () => {
   document.querySelector("#mcForm").style.display = "block";
@@ -14,7 +14,7 @@ const payBtn = document.querySelector("#pay-button");
 
 async function init() {
   // Initialize the Dibsy Object.
-  const dibsy = await Dibsy(pk, {
+  const dibsy = await Dibsy(DIBSY_PUBLIC_API, {
     // When the user has inputted all legal values in the fields.
     canSubmit: (canSubmit) => {
       if (!canSubmit) {

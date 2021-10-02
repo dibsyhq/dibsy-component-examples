@@ -1,7 +1,5 @@
-// you will need a public key to create a dibsy instance
+// This is your Dibsy Public API Key.
 const pk = "pk_test_d70V5Wsqu263AdY4gXPIAWGMZqMRmy0BbNmi";
-// your server endpoint
-const server_endpoint = "http://localhost:4545";
 
 const removeLoader = () => {
   document.querySelector("#mcForm").style.display = "block";
@@ -15,8 +13,9 @@ const showErrorMessage = (message) => {
 const payBtn = document.querySelector("#pay-button");
 
 async function init() {
-  //INITIALIZE DIBSY WITH DIBSY PUBLIC KEY
+  // Initialize the Dibsy Object.
   const dibsy = await Dibsy(pk, {
+    // When the user has inputted all legal values in the fields.
     canSubmit: (canSubmit) => {
       if (!canSubmit) {
         payBtn.setAttribute("disabled", "true");
@@ -24,13 +23,17 @@ async function init() {
         payBtn.removeAttribute("disabled");
       }
     },
+
+    // When all fields are loaded, remove the loader.
     onFieldReady: (field, fields) => {
       if (fields?.length === 3) {
         removeLoader();
       }
     },
-  },
-  );
+  });
+
+  // Create the four Card Holder Data Components using the dibsy.createComponent(type[, options]) function
+  // and mount them in your checkout form using the component.mount(targetElement) function.
 
   const cardNumber = dibsy.createComponent("cardNumber");
   cardNumber.mount("#card-number");
@@ -44,8 +47,8 @@ async function init() {
   expiryDate.mount("#expiry-date");
   expiryDate.errorMessage("#expiry-date-error");
 
-
-  fetch(`/init-credit-card`, {
+  // Request your backend to recieve the paymentToken
+  fetch(`/init-payment`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -55,8 +58,7 @@ async function init() {
       return result.json();
     })
     .then(function (data) {
-
-      // step4 listen to submit event
+      // Listen to submit event.
       const form = document.querySelector("form");
       form.addEventListener("submit", async (e) => {
         e.preventDefault();
@@ -80,9 +82,8 @@ async function init() {
           },
           callback: (payment, error) => {
             if (error) {
-              alert("Payment has failed, reason : " + error.message);
+              alert("Payment has failed, reason: " + error.message);
             } else {
-              alert("Your payment has been successful.");
               window.location.href = payment.redirectUrl;
             }
           },
@@ -94,22 +95,5 @@ async function init() {
       });
     });
 }
-init()
 
-
-const radios = document.querySelectorAll('input[name="choice"]');
-
-
-for(var i = 0, max = radios.length; i < max; i++) {
-    radios[i].onclick = function() {
-
-      if (this.value === "naps-card") {
-          document.querySelector("#mcForm").style.display = "none";
-          document.querySelector("#naps").style.display = ""
-        }
-      else if ( this.value === "credit-card" ) {
-        document.querySelector("#mcForm").style.display = "block";
-        document.querySelector("#naps").style.display = "none"
-      }
-    }
-}
+init();

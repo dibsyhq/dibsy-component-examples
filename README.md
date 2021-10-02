@@ -1,6 +1,6 @@
-# dibsy-embedded-example
+# Dibsy.JS Demo
 
-- Install node.js 
+- Install node.js
 - install dependencies using yarn or npm
 - Run "server.js" file
 - Go to "localhost:4545"

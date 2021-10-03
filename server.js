@@ -21,6 +21,7 @@ app.post("/init-payment", async (req, res) => {
     amount: 50,
     description: "iPhone 13 - Gold Edition",
     redirectUrl: "https://example.com/success",
+    webhookUrl: "https://d676-37-186-38-9.ngrok.io/test"
   };
 
   try {

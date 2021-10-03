@@ -1,5 +1,4 @@
-// This is your Dibsy Public API Key.
-const DIBSY_PUBLIC_API = process.env.DIBSY_PUBLIC_API;
+const DIBSY_PUBLIC_API = '<Your Dibsy API Public Key>';
 
 const removeLoader = () => {
   document.querySelector("#mcForm").style.display = "block";

@@ -1,4 +1,4 @@
-# Dibsy Component Demo
+# Dibsy Component Examples
 
 ## Documentation
 

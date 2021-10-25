@@ -1,48 +1,37 @@
-const express = require('express');
-const axios = require('axios').default; 
+const express = require("express");
+const axios = require("axios").default;
 const app = express();
 
-app.use(express.static("public"))
+app.use(express.static("public"));
 
-const sk="sk_live_c3fa66e70c7022aaa0e6c75da58522e280b7"
-const baseUrl = "http://localhost:5000/v1"
+const DIBSY_SECRET_KEY = "sk_test_24382ce57ea8686921f128be22d65ddf9706";
+const DIBSY_API_ENDPOINT = "https://api.dibsy.one/v1";
 
-const orders = {}
+app.post("/create-payment", async (req, res) => {
+  const response = await axios({
+    method: "POST",
+    baseURL: DIBSY_API_ENDPOINT,
+    url: "/payments",
+    headers: {
+      authorization: `Bearer ${DIBSY_SECRET_KEY}`,
+    },
+    data: {
+      description: "Gold Style Watch - Special Edition",
+      amount: 56.99,
+      metadata: {
+        product_id: 156,
+        customer_id: 345,
+      },
+      customer: {
+        name: "John Doe",
+        email: "your_customer@email.com",
+        phone: "+97433333333",
+      },
+      redirectUrl: "https://example.com/order",
+    },
+  });
 
-app.post("/create-payment",async (req,res)=>{
-    const orderId = Object.keys(orders).length+1
-    const response = await axios({
-        method:'POST',
-        baseURL:baseUrl,
-        url:"/payments",
-        headers:{
-            "authorization":"Bearer "+sk
-        },
-        data:{
-            amount:59,
-            description:"Test card component",
-            redirectUrl:"http://localhost:3000/callback/"+orderId,
-            metadata:{
-                orderId
-            }
-        }
-    })
-    const paymentId = response.data.id
-    orders[orderId] = paymentId
-    return res.send(response.data.paymentToken);
-})
+  return res.send(response.data.paymentToken);
+});
 
-
-app.get("/callback/:orderId",(req,res)=>{
-    const send = `
-        <html>
-            <body>
-                <h1>Thank you you order #${req.params.orderId} has completed with</h1>
-                <h2>Transaction id #${orders[req.params.orderId]}</h2>
-            </body>
-        </html>
-    `
-    res.send(send)
-})
-
-app.listen(3000)
+app.listen(3000);

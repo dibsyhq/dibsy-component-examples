@@ -1,5 +1,8 @@
 # Dibsy Component Examples
 
+![image](/public/card-component.png)
+
+
 ## Documentation
 
 - [Build your Checkout](https://docs.dibsy.one/payments/build-your-checkout)
@@ -7,6 +10,7 @@
 - [Styling](https://docs.dibsy.one/dibsy-components/styling)
 
 ## Setting up locally.
+
 
 The "server.js" file acts as your backend API, calling the Dibsy API when requested. The demo uses Express.js as the backend framework, and uses HTML, CSS and vanilla Javascript in the frontend. To run this demo locally:
 

@@ -28,8 +28,8 @@ app.post("/create-payment", async (req, res) => {
         email: "your_customer@email.com",
         phone: "+97433333333",
       },
-      redirectUrl: "https://example.com/order",
-      webhookUrl: "https://32f5-37-186-53-196.ngrok.io/recieve-webhook"
+      // redirectUrl: "https://example.com/order",
+      // webhookUrl: "https://32f5-37-186-53-196.ngrok.io/recieve-webhook"
     },
   });
 
